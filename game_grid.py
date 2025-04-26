@@ -64,17 +64,36 @@ class GameGrid:
 
     def display_end_game(self):
         stddraw.clear(self.empty_cell_color)
+
         current_dir = os.path.dirname(os.path.realpath(__file__))
+        score_file = os.path.join(current_dir, "best_score.txt")
+
+        try:
+            with open(score_file, "r") as f:
+                best_score = int(f.read())
+        except:
+            best_score = 0
+
+        if self.score > best_score:
+            best_score = self.score
+            with open(score_file, "w") as f:
+                f.write(str(best_score))
+        with open("score_history.txt", "a") as f:
+          f.write(str(self.score) + "\\n")        
+
         img_path = os.path.join(current_dir, "images/end_bg_updated.png")
         end_image = Picture(img_path)
-
         img_center_x, img_center_y = self.grid_width - 3.8, self.grid_height - 10.5
         stddraw.picture(end_image, img_center_x, img_center_y)
 
         stddraw.setFontFamily("Poppins Bold")
-        stddraw.setFontSize(80)
-        stddraw.setPenColor(Color(245, 245, 245))
-        stddraw.text(self.grid_width - 2, self.grid_height - 14.85, str(self.score))
+        stddraw.setFontSize(40)
+        stddraw.setPenColor(Color(255, 182, 193))
+        stddraw.text(self.grid_width / 2, self.grid_height - 2, "Your Score: " + str(self.score))
+
+        stddraw.setFontSize(35)
+        stddraw.setPenColor(Color(255, 215, 0))
+        stddraw.text(self.grid_width / 2, self.grid_height - 3.5, "Best Score: " + str(best_score))
 
         stddraw.setFontSize(70)
         stddraw.setPenColor(Color(103, 179, 46))

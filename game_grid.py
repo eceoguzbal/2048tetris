@@ -63,6 +63,7 @@ class GameGrid:
         sys.exit()
 
     def display_end_game(self):
+        stddraw.clear(self.empty_cell_color)
         current_dir = os.path.dirname(os.path.realpath(__file__))
         img_path = os.path.join(current_dir, "images/end_bg_updated.png")
         end_image = Picture(img_path)

@@ -102,7 +102,7 @@ class Tetris2048:
         # Set menu colors
         background_color = Color(245, 245, 245)
         button_color = Color(245, 245, 245)
-        text_color = Color(14, 98, 148)
+        text_color = Color(255, 182, 193)
 
         # Clear canvas
         stddraw.clear(background_color)

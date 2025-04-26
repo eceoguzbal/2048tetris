@@ -1,4 +1,3 @@
-//Main code
 
 # Import necessary modules and classes
 import os
